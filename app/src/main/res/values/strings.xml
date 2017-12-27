@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="icon_back">&#xe921;</string>
+    <string name="icon_more">&#xe917;</string>
+
+    <string name="title">All Offers</string>
+    <string name="sub_title">EveryWhere</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="popular">Popular</string>
+    <string name="icon_favourites"></string>
+
+    <string name="offer1_desc">Get Complementary Coffee Latte Free\nOn Bill Above ₹250</string>
+    <string name="offer2_desc">Pasta with Exotic Vegetables at 20% OFF\nOn Weekends</string>
+    <string name="offer3_desc">Buy 1 Rayban Sunglass Get\nany aviator series free</string>
+    <string name="offer4_desc">Shop for ₹5000 and get ₹1000 off on\nTop 50 Brands</string>
+    <string name="offer5_desc">Summer Surprise offer,Walk In to\nGet Cranberry Juice free</string>
+
+
+    <string name="offer1_band_name">Cafe Coffee day</string>
+    <string name="offer2_band_name">Pasta House</string>
+    <string name="offer3_band_name">Vision Express</string>
+    <string name="offer4_band_name">Relianes Trends</string>
+    <string name="offer5_band_name">Fruitshop on Greams Road</string>
+</resources>

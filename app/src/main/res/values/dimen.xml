@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_bar_height">56dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_50">40dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_56">56dp</dimen>
+
+
+    <dimen name="dimen_106">106dp</dimen>
+    <dimen name="dimen_5">5dp</dimen>
+    <dimen name="dimen_18">18dp</dimen>
+    <dimen name="dimen_28">28dp</dimen>
+
+
+    <dimen name="font_16">16sp</dimen>
+
+</resources>
