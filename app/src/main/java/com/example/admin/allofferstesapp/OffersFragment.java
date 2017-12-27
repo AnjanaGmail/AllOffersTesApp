@@ -1,13 +1,17 @@
 package com.example.admin.allofferstesapp;
 
+import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.animation.DynamicAnimation;
+import android.support.animation.FlingAnimation;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,7 @@ public class OffersFragment extends Fragment {
     private int mContainerWidth;
     private GestureDetector mGesture;
     private DisplayMetrics displayMetrics;
+    private OfferView boughtFront;
 
     int currentlyFocusedItem = 0;
     private static final int PAGES = 10;
@@ -119,6 +125,7 @@ public class OffersFragment extends Fragment {
             }
             // adding view to list
             mViewList.add(offerView);
+
             offerView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -257,7 +264,6 @@ public class OffersFragment extends Fragment {
                     params.topMargin = params.topMargin + (difference * (i - currentlyFocusedItem));
                 }
                 offerView.setLayoutParams(params);
-
             }
 
             if (mViewList.size() >= (currentlyFocusedItem + 1)) {
@@ -265,7 +271,8 @@ public class OffersFragment extends Fragment {
 
                 if (currentlyFocusedItem > 0) {
                     //starting animation of the view which is moved up
-                    //startAnimation(mViewList.get(currentlyFocusedItem-1));
+                  // startAnimation(mViewList.get(currentlyFocusedItem-1));
+
                 }
             }
 
@@ -285,15 +292,9 @@ public class OffersFragment extends Fragment {
         anim.setDuration(1000);
         anim.start();*/
 
-        Animation slide = null;
-        slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-                0.0f, Animation.RELATIVE_TO_SELF, -5.0f);
-
-        slide.setDuration(400);
-        slide.setFillAfter(true);
-        slide.setFillEnabled(true);
-        offerView.startAnimation(slide);
+        ObjectAnimator anim = ObjectAnimator.ofFloat(offerView, "y", -0f);
+        anim.setDuration(4000);
+        anim.start();
     }
 
     private void moveDown() {
@@ -321,15 +322,37 @@ public class OffersFragment extends Fragment {
         public boolean onDown(MotionEvent e) {
             return true;
         }
-
+// refered https://tagmycode.com/snippet/1057/android-swipe-gesture-detect-code-and-animate-activities#.WkNQzFWWbIU
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                moveDown();
+            Log.d("GestureDetector", "onFling: " + e1.toString() + e1.toString());
+            float diffY = e2.getY() - e1.getY();
+
+            if (Math.abs(diffY) > SWIPE_MIN_DISTANCE
+                    && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                if(diffY < 0){
+                    moveUp();
+                } else {
+                    moveDown();
+                }
             }
-            if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                moveUp();
-            }
+            /*FlingAnimation flingAnim = new FlingAnimation(childView, DynamicAnimation.TRANSLATION_Y)
+                    // Sets the start velocity to -2000 (pixel/s)
+                    .setStartVelocity(-2000)
+                    // Optional but recommended to set a reasonable min and max range for the animation.
+                    // In this particular case, we set the min and max to -200 and 2000 respectively.
+                    .setMinValue(-e2.getY() - e1.getY()).setMaxValue(2000);
+            flingAnim.start();*/
+
+            //mViewList.g
+            return false;
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+                                float distanceY) {
+
+            // TODO Auto-generated method stub
             return false;
         }
     };
